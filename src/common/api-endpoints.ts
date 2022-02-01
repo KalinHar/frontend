@@ -31,5 +31,9 @@ export const endpoints = {
   },
   bootcamp: {
     BootcampersList: <Endpoint>{ url: '/bootcamp/all', method: 'GET' },
+    createBootcamper: <Endpoint>{ url: '/bootcamp', method: 'POST' },
+    viewBootcamper: (id: string) => <Endpoint>{ url: '/bootcamp/' + id, method: 'GET' },
+    deleteBootcamper: (id: string) => <Endpoint>{ url: `/bootcamp/${id}`, method: 'DELETE' },
+    updateBootcamper: (id: string) => <Endpoint>{ url: `/bootcamp/${id}`, method: 'PATCH' },
   },
 }

@@ -76,3 +76,11 @@ export const createCheckoutSession: MutationFunction<
     data,
   )
 }
+
+export const deleteBootcampStudent: MutationFunction<AxiosResponse<null>, { id: string }> = async ({
+  id,
+}: {
+  id: string
+}) => {
+  return await axios.delete<null>(endpoints.bootcamp.deleteBootcamper(id).url)
+}

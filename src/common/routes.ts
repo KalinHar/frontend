@@ -50,7 +50,8 @@ export const routes = {
     supporters: '/admin/supporters',
     bootcamp: {
       index: '/admin/bootcamp',
-      view: (id: string) => `/admin/bootcamp/${id}`,
+      create: '/admin/bootcamp/create',
+      viewBootcamperById: (id: string) => `/admin/bootcamp/${id}`,
     },
   },
 }

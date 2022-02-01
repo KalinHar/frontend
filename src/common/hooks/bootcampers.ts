@@ -4,24 +4,16 @@ import { QueryClient, useQuery } from 'react-query'
 
 import { endpoints } from 'common/api-endpoints'
 import { authQueryFnFactory } from 'common/rest'
-
-type Bootcamper = {
-  id: string
-  firstName: string
-  lastName: string
-}
+import { BootcampersResponse } from 'gql/bootcamp'
 
 export function useBootcampersList() {
-  const { keycloak } = useKeycloak<KeycloakInstance>()
-  return useQuery<Bootcamper[]>(
-    endpoints.bootcamp.BootcampersList.url,
-    authQueryFnFactory<Bootcamper[]>(keycloak?.token),
-  )
+  return useQuery<BootcampersResponse[]>(endpoints.bootcamp.BootcampersList.url)
 }
 
-export async function prefetchBootcampersList(client: QueryClient, token?: string) {
-  await client.prefetchQuery<Bootcamper[]>(
-    endpoints.bootcamp.BootcampersList.url,
-    authQueryFnFactory<Bootcamper[]>(token),
-  )
+export function useViewBootcamper(id: string) {
+  return useQuery<BootcampersResponse>(endpoints.bootcamp.viewBootcamper(id).url)
+}
+
+export function useDeleteBootcamper(id: string) {
+  return useQuery<BootcampersResponse>(endpoints.bootcamp.deleteBootcamper(id).url)
 }
